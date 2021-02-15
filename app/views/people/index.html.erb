@@ -1,0 +1,17 @@
+<div>
+  <h4>Import data!</h4>
+  <%= form_tag import_people_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag 'Import CSV' %>
+  <%end%>
+</div>
+
+<div id="people"></div>
+
+<script type="text/javascript">
+  $(function() {
+    // Blog is the app name
+    window.router = new RoRChallenge.Routers.PeopleRouter({people: <%= @people.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>
